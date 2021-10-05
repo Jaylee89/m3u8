@@ -14,3 +14,6 @@ python init template
 You need to execute two commands after a new deployment
 1. install depenencies
 2. execute script
+
+## Docs reference
+- [Python Download M3U8 Encrypted Video Example](https://www.fatalerrors.org/a/python-download-m3u8-encrypted-video-example.html)
