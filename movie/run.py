@@ -49,9 +49,9 @@ def download_m3u8_video(url, tempdir='tmp', max_workers=10):
     with ThreadPoolExecutor(max_workers=max_workers) as pool:
         total_duration=0
         for i, seg in enumerate(playlist.segments):
-            total_duration = total_duration + seg.duration
-            # pool.submit(download_ts, seg.absolute_uri, key, i, tempdir)
-        print(f"total duration is {total_duration}s")
+            # total_duration = total_duration + seg.duration
+            pool.submit(download_ts, seg.absolute_uri, key, i, tempdir)
+        # print(f"total duration is {total_duration}s")
 
 def generate_video(save_name, tempdir):
     with open(save_name, 'wb') as fw:
