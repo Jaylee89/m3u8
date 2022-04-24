@@ -25,17 +25,11 @@
             ],
         },
         {
-            "name": "main.py",
+            "name": "run.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/movie/main.py",
+            "program": "${workspaceFolder}/movie/run.py",
             "console": "integratedTerminal",
-            "args": [
-                "--entity",
-                "AU",
-                "--env",
-                "uat"
-            ],
         }
     ]
 }
