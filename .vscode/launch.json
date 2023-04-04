@@ -25,10 +25,10 @@
             ],
         },
         {
-            "name": "run.py",
+            "name": "download-mp4.py",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/movie/run.py",
+            "program": "${workspaceFolder}/movie/download-mp4.py",
             "console": "integratedTerminal",
         }
     ]

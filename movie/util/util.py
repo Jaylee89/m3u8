@@ -6,13 +6,15 @@ import os
 class Util:
 
     @staticmethod
-    def read_file(filename, readline=False):
+    def read_file(filename, readline=False, readlines=False):
         result = None
         try:
             with open(file=filename, mode="r", buffering=1024, encoding="utf8") as f:
                 if f.readable():
                     if readline:
                         result = f.readline()
+                    elif readlines:
+                        result = f.readlines()
                     else:
                         result = f.read()
         except Exception as error:

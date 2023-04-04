@@ -1,0 +1,34 @@
+## Sniffed Detail - https://82497838.clarc.cn/course/chapter_detail?chapter_id=618&uid=16825 
+
+### Request:
+
+GET /course/chapter_detail?chapter_id=618&uid=16825 HTTP/1.1
+Host: 82497838.clarc.cn
+Connection: keep-alive
+content-type: application/x-www-form-urlencoded
+Accept-Encoding: gzip,compress,br,deflate
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.31(0x18001f37) NetType/WIFI Language/zh_CN
+Referer: https://servicewechat.com/wxd8e7462679f3ac0e/44/page-frame.html
+
+
+
+### Response:
+
+HTTP/1.1 200 OK
+Date: Mon, 03 Apr 2023 05:55:16 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: nginx/1.10.1
+X-Powered-By: PHP/5.6.37
+Set-Cookie: PHPSESSID=2rh0hac35e4kparar3c5se1to0; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin, Content-Type, Accept, X-Requested-With, X-Code-Version, api-version
+
+{"status":{"status":200,"description":"OK - \u8bf7\u6c42\u6210\u529f","succeed":1},"data":{"chapter_id":"618","course_id":"53","chapter_name":"\u521d\u8bd5\u725b\u5200\u5b66\u4f1a\u5e7f\u5dde\u8bdd9\u4e2a\u8c032","price":"0.00","course_img":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/course\/53\/DF70A853-BABA-1ABD-7B77-E0B6929F7244.png","create_time":"1499597531","code":"","video":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/yue_JY_DH_CJ_JZ_20TXHYYJCP_D1T2_1.mp4","fragment":[{"content":"\u65e9\u6668\uff01\u2002 \u2002 ","code":"yue","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/yue_JY_YP_CJ_JZ_20TXHYYJCP_D1T3_1.mp3","phonogram":"zou3 san2 \uff01","character":"0","type":"3","trans":[{"content":"\u65e9\u4e0a\u597d\uff01","code":"zho","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/","phonogram":""}]},{"content":"\u4f60\u597d\uff01\u2002","code":"yue","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/yue_JY_YP_CJ_JZ_20TXHYYJCP_D1T3_2.mp3","phonogram":"nei4 hou3 \uff01","character":"0","type":"3","trans":[{"content":"\u4f60\u597d\uff01","code":"zho","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/","phonogram":""}]},{"content":"\u62dc\u62dc\uff01\u2002 ","code":"yue","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/yue_JY_YP_CJ_JZ_20TXHYYJCP_D1T3_3.mp3","phonogram":"baai1 baai5 \uff01","character":"0","type":"3","trans":[{"content":"\u518d\u89c1\uff01","code":"zho","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/","phonogram":""}]},{"content":"\u65e9\u551e\uff01\u2002","code":"yue","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/yue_JY_YP_CJ_JZ_20TXHYYJCP_D1T3_4.mp3","phonogram":"zou3 tau3 \uff01\u2002 ","character":"0","type":"3","trans":[{"content":"\u665a\u5b89\uff01","code":"zho","resource":"http:\/\/qianyujie-1253376219.file.myqcloud.com\/test\/","phonogram":""}]}],"note":[]}}
+
+====
+Sniffed By Stream, Only Spread For Research Purpose.
