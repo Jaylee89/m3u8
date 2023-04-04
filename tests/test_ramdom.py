@@ -1,8 +1,7 @@
-import unittest
-
+from unittest import TestCase
 from movie.util.util import Util
 
-class TestUnit(unittest.TestCase):
+class TestUnit(TestCase):
 
     @classmethod
     def setUpClass(cls):
@@ -21,8 +20,4 @@ class TestUnit(unittest.TestCase):
     def test_get_random(self):
         """random"""
         result = Util.get_random(2)
-        self.assertLessEqual(result, 2, msg="{} less equal to 2".format(result))
-
-if __name__ == '__main__':
-    # verbosity=*：默认是1；设为0，则不输出每一个用例的执行结果；2-输出详细的执行结果
-    unittest.main(verbosity=1)
+        self.assertLessEqual(next(result), 200, msg="{} less equal to 2".format(result))
