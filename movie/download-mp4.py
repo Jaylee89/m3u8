@@ -110,8 +110,8 @@ def parse_chapter_detail(qianyujie):
     chapters = qianyujie.data
 
     name_and_chapter_ids = []
-    for chapter in chapters:
-        parent_name = chapter.name
+    for index, chapter in enumerate(chapters):
+        parent_name = f"{str(index)}{chapter.name}"
         children = chapter.children
         for child in children:
             child_name = child.name
