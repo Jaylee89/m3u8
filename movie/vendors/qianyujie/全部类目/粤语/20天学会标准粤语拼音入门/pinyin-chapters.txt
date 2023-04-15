@@ -1,0 +1,34 @@
+## Sniffed Detail - https://82497838.clarc.cn/course/chapter?uid=16825&course_id=204 
+
+### Request:
+
+GET /course/chapter?uid=16825&course_id=204 HTTP/1.1
+Host: 82497838.clarc.cn
+Connection: keep-alive
+content-type: application/x-www-form-urlencoded
+Accept-Encoding: gzip,compress,br,deflate
+User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 16_1_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.31(0x18001f37) NetType/WIFI Language/zh_CN
+Referer: https://servicewechat.com/wxd8e7462679f3ac0e/44/page-frame.html
+
+
+
+### Response:
+
+HTTP/1.1 200 OK
+Date: Fri, 14 Apr 2023 15:09:14 GMT
+Content-Type: text/html; charset=UTF-8
+Transfer-Encoding: chunked
+Connection: keep-alive
+Server: nginx/1.10.1
+X-Powered-By: PHP/5.6.37
+Set-Cookie: PHPSESSID=l8cv6s5rda62t1tqa82g7218r1; path=/
+Expires: Thu, 19 Nov 1981 08:52:00 GMT
+Cache-Control: no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+Pragma: no-cache
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Headers: Origin, Content-Type, Accept, X-Requested-With, X-Code-Version, api-version
+
+{"status":{"status":200,"description":"OK - \u8bf7\u6c42\u6210\u529f","succeed":1},"data":{"course_chapter":[{"course_id":"204","chapter_id":"7267","name":"1.\u7ca4\u8bed\u62fc\u97f3\u4ecb\u7ecd","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7268","name":"2.\u7ca4\u8bed\u62fc\u97f3\u65b9\u6848\u6982\u8ff0","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7269","name":"3.\u58f0\u6bcd\u3001\u97f5\u6bcd\u3001\u58f0\u8c03\u8868","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7270","name":"4.\u5e38\u89c1\u58f0\u6bcd1","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7271","name":"5.\u5e38\u89c1\u58f0\u6bcd2","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7272","name":"6.\u5e38\u89c1\u58f0\u6bcd3","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7273","name":"7.\u5e38\u89c1\u97f5\u6bcd1","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7274","name":"8.\u5e38\u89c1\u97f5\u6bcd2","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7275","name":"9.\u5e38\u89c1\u97f5\u6bcd3","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7276","name":"10.\u5e38\u89c1\u97f5\u6bcd4","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7277","name":"11.\u8212\u58f0\u8c03","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7278","name":"12.\u58f0\u6bcdzcs","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7279","name":"13.\u957f\u77ed\u97f3\u97f5\u6bcd","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7280","name":"14.\u5165\u58f0\u97f5\u6bcd","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7281","name":"15.\u5165\u58f0\u8c03","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]},{"course_id":"204","chapter_id":"7282","name":"16.\u5e7f\u5dde\u8bdd\u7684\u7279\u6b8a\u97f5\u6bcd","price":"0.00","type":"1","jump_wexcx_appid":null,"jump_wexcx_path":"","jump_h5_path":"","is_buy":0,"children":[]}],"is_free":"1","learning_rate":"7267","total_price":"78.00","virtual_price":"78.00"}}
+
+====
+Sniffed By Stream, Only Spread For Research Purpose.

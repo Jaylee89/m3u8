@@ -30,6 +30,13 @@
             "request": "launch",
             "program": "${workspaceFolder}/movie/download-mp4.py",
             "console": "integratedTerminal",
+        },
+        {
+            "name": "unit test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/tests/tests.py",
+            "console": "integratedTerminal",
         }
     ]
 }

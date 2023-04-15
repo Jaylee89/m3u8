@@ -55,3 +55,23 @@ class QianYuJie(object):
 
     def __init__(self, data: list):
         self.data = data
+
+# response check
+class QianYuJieResponse:
+    @staticmethod
+    def check_status(json) -> bool:
+        return json.status.status == 200 and json.status.succeed == 1
+
+from types import SimpleNamespace
+
+class LanguageInfoModel(SimpleNamespace):
+    name: str
+    assortment_id: str
+    course_id: str
+    chapter_id: str
+
+    def __init__(self, name, assortment_id=None, course_id=None, chapter_id=None) -> None:
+        self.name = name
+        self.assortment_id = assortment_id
+        self.course_id = course_id
+        self.chapter_id = chapter_id

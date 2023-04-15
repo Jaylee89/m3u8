@@ -17,7 +17,7 @@ if __name__ == '__main__':
         # "Host": "www.metvb1.com",
         # "Referer": "http://www.metvb1.com/play/8248-2-30.html"
     }
-    download = Downloader(header=header)
+    download = Downloader(**header)
     stream = download._get_stream(url=url)
     response_data = None
     if stream[0] == 200:

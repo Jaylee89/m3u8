@@ -1,7 +1,6 @@
 import json, os
 
 from types import SimpleNamespace
-
 from pathlib import Path
 
 ROOT_PATH = Path(__file__).parent.parent
@@ -25,4 +24,9 @@ class JSONLoader:
             if f.readable():
                 data = f.read()
                 object = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
+        return object
+
+    @staticmethod
+    def load_decodable_with_bytes(data: bytes):
+        object = json.loads(data, object_hook=lambda d: SimpleNamespace(**d))
         return object
