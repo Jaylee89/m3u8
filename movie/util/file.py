@@ -34,8 +34,8 @@ class File:
     def write_file(data: str, file_name: str):
         try:
             file_path = os.path.join(ROOT_PATH, file_name)
-            with open(file=file_path, mode="w", buffering=1024, encoding="utf8") as f:
+            with open(file=file_path, mode="a", buffering=1024, encoding="utf8") as f:
                 if f.writable():
-                    f.write(data.strip() + "\n")
+                    f.write(f"{data.strip()}\n")
         except Exception as error:
             print("file read error is {}".format(error))

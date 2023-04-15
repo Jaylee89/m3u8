@@ -32,7 +32,7 @@ class QianYuJie:
 
     result: list = []
 
-    def __init__(self) -> None:
+    def __init__(self):
         self.downloader = Downloader(True, headers=headers)
 
     def handle_all_data(self):
@@ -54,11 +54,17 @@ class QianYuJie:
         1. write data to txt file
         2. download video in multiple threads
         """
-        max_workers = 1
+        max_workers = 10
         with ThreadPoolExecutor(max_workers=max_workers) as pool:
             for index, v in enumerate(self.chapter_info):
-                pool.submit(self.handle_chapter_detail_data, v.chapter_id, index, name, course_name)
-    
+                pool.submit(self.handle_chapter_detail_data, v.chapter_id, index+1, name, course_name)
+
+        """
+        for testing & debug
+        """
+        # for index, v in enumerate(self.chapter_info):
+        #     self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name)
+
     def handle_chapter_detail_data(self, chapter_id, index, name, course_name):
         api_status, chapter_detail = self._get_chapter_detail(chapter_id)
         if api_status is False:
@@ -66,12 +72,14 @@ class QianYuJie:
             return
         course_id, chapter_id, chapter_name, video = self._to_analyze_chapter_detail(chapter_detail)
 
-        chapter_detail = list(name, course_name, f"{chapter_name}-{course_id}-{chapter_id}", video).join(",")
-        self.result.append(chapter_detail)
+        chapter_name = f"{index}.{chapter_name}" if not chapter_name.startswith(str(index)) else chapter_name
 
-        course_name = f"{index}.{course_name}" if not course_name.contains(str(index)) else course_name
+        chapter_detail_txt = ",".join(list((name, course_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
+        self.result.append(chapter_detail_txt)
+        File.write_file(chapter_detail_txt, f"vendors/qianyujie/全部类目/{name}/{course_name}/video_info.txt")
 
-        File.write_file(chapter_detail, file_name=f"vendors/qianyujie/全部类目/{name}/{course_name}/video_info.txt")
+        chapter_detail_batch = " ".join(list(("curl", video, "--output", f"{chapter_name}-{course_id}-{chapter_id}.mp4")))
+        File.write_file(chapter_detail_batch, f"vendors/qianyujie/全部类目/{name}/{course_name}/batch.sh")
 
     # download part
     def _get_language_list(self) -> tuple:
