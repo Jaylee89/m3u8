@@ -69,9 +69,11 @@ class LanguageInfoModel(SimpleNamespace):
     assortment_id: str
     course_id: str
     chapter_id: str
+    children: list
 
-    def __init__(self, name, assortment_id=None, course_id=None, chapter_id=None) -> None:
+    def __init__(self, name, assortment_id=None, course_id=None, chapter_id=None, children=[]) -> None:
         self.name = name
         self.assortment_id = assortment_id
         self.course_id = course_id
         self.chapter_id = chapter_id
+        self.children = children

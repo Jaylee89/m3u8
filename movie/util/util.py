@@ -1,7 +1,4 @@
-import random
-# from math import ceil
-import os
-# from pathlib import Path
+import random, os
 
 class Util:
 
@@ -26,13 +23,6 @@ class Util:
             _path = os.path.dirname(path)
             if not os.path.exists(_path):
                 os.makedirs(_path)
-
-            # _file = Path(path)
-            # if _file.is_file():
-            #     _file = _file.parent()
-            # if not _file.exists():
-            #     _file = _file.parent()
-            # _file.mkdir(parents=True, exist_ok=True)
             func(stream, path)
         return result
 

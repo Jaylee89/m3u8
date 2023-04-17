@@ -54,36 +54,54 @@ class QianYuJie:
         1. write data to txt file
         2. download video in multiple threads
         """
-        max_workers = 10
-        with ThreadPoolExecutor(max_workers=max_workers) as pool:
-            for index, v in enumerate(self.chapter_info):
-                pool.submit(self.handle_chapter_detail_data, v.chapter_id, index+1, name, course_name)
+        # max_workers = 10
+        # with ThreadPoolExecutor(max_workers=max_workers) as pool:
+        #     for index, v in enumerate(self.chapter_info):
+        #         children = v.children
+        #         new_index = index+1
+        #         if children and len(children) > 0:
+        #             for child in children:
+        #                 pool.submit(self.handle_chapter_detail_data, child.chapter_id, new_index, name, course_name, v.name, child_chapter_name=child.name)
+        #         else:
+        #             pool.submit(self.handle_chapter_detail_data, v.chapter_id, new_index, name, course_name, v.name)
 
         """
         for testing & debug
         """
-        # for index, v in enumerate(self.chapter_info):
-        #     self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name)
+        for index, v in enumerate(self.chapter_info):
+            children = v.children
+            if children and len(children) > 0:
+                for child in children:
+                    self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name, child_chapter_name=child.name)
+            else:
+                self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name)
 
-    def handle_chapter_detail_data(self, chapter_id, index, name, course_name):
+    def handle_chapter_detail_data(self, chapter_id, index, name, course_name, parent_chapter_name, child_chapter_name=None):
         api_status, chapter_detail = self._get_chapter_detail(chapter_id)
         if api_status is False:
             print(f"failed info is {chapter_id}, {name}, {course_name}")
             return
         course_id, chapter_id, chapter_name, video = self._to_analyze_chapter_detail(chapter_detail)
 
-        chapter_name = f"{index}.{chapter_name}" if not chapter_name.startswith(str(index)) else chapter_name
+        if child_chapter_name is None:
+            chapter_name = f"{index}.{chapter_name}" if not chapter_name.startswith(str(index)) else chapter_name
+            chapter_detail_txt = ",".join(list((name, course_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
+        else:
+            parent_chapter_name = f"{index}.{parent_chapter_name}" if not parent_chapter_name.startswith(str(index)) else parent_chapter_name
+            chapter_detail_txt = ",".join(list((name, course_name, parent_chapter_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
 
-        chapter_detail_txt = ",".join(list((name, course_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
         self.result.append(chapter_detail_txt)
         File.write_file(chapter_detail_txt, f"vendors/qianyujie/全部类目/{name}/{course_name}/video_info.txt")
 
-        chapter_detail_batch = " ".join(list(("curl", video, "--output", f"{chapter_name}-{course_id}-{chapter_id}.mp4")))
+        if child_chapter_name is None:
+            chapter_detail_batch = " ".join(list(("curl", video, "--output", f"{chapter_name}-{course_id}-{chapter_id}.mp4")))
+        else:
+            chapter_detail_batch = " ".join(list(("curl", video, "--output", f"{parent_chapter_name}/{chapter_name}-{course_id}-{chapter_id}.mp4")))
         File.write_file(chapter_detail_batch, f"vendors/qianyujie/全部类目/{name}/{course_name}/batch.sh")
 
     # download part
     def _get_language_list(self) -> tuple:
-        file_name = "mocks/qianyujie/all-languages.json"
+        file_name = "mocks/qianyujie/all_languages.json"
         response_json = self.downloader._get_json("https://82497838.clarc.cn/index", file_name=file_name)
         return response_json
 
@@ -93,7 +111,7 @@ class QianYuJie:
             "page": 1,
             "page_size": 20
         }
-        file_name = "mocks/qianyujie/cantonese-course-list.json"
+        file_name = "mocks/qianyujie/cantonese_course_list.json"
         response_json = self.downloader._get_json("https://82497838.clarc.cn/course/list", params, file_name=file_name)
         return response_json
 
@@ -102,7 +120,7 @@ class QianYuJie:
             "uid": self.uid,
             "course_id": course_id
         }
-        file_name = "mocks/qianyujie/pinyin-chapters.json"
+        file_name = "mocks/qianyujie/pinyin_chapters_with_children.json"
         response_json = self.downloader._get_json("https://82497838.clarc.cn/course/chapter", params, file_name=file_name)
         return response_json
 
@@ -147,7 +165,7 @@ class QianYuJie:
             data = dict_items.data
             chapter_ids = data.course_chapter
             for object in chapter_ids:
-                self.chapter_info.append(LanguageInfoModel(object.name, course_id=object.course_id, chapter_id=object.chapter_id))
+                self.chapter_info.append(LanguageInfoModel(object.name, course_id=object.course_id, chapter_id=object.chapter_id, children=object.children))
 
     def _to_analyze_chapter_detail(self, dict_items):
         if QianYuJieResponse.check_status(dict_items):
