@@ -23,6 +23,8 @@ headers = {
     "Referer": "https://servicewechat.com/wxd8e7462679f3ac0e/66/page-frame.html"
 }
 
+service_data_path = "mocks/qianyujie/services"
+
 class QianYuJie:
     uid: str = "16822"
     downloader: Downloader
@@ -33,7 +35,7 @@ class QianYuJie:
     result: list = []
 
     def __init__(self):
-        self.downloader = Downloader(True, headers=headers)
+        self.downloader = Downloader(False, headers=headers)
 
     def handle_all_data(self):
         api_status, language_list = self._get_language_list()
@@ -54,29 +56,29 @@ class QianYuJie:
         1. write data to txt file
         2. download video in multiple threads
         """
-        # max_workers = 10
-        # with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        #     for index, v in enumerate(self.chapter_info):
-        #         children = v.children
-        #         new_index = index+1
-        #         if children and len(children) > 0:
-        #             for child in children:
-        #                 pool.submit(self.handle_chapter_detail_data, child.chapter_id, new_index, name, course_name, v.name, child_chapter_name=child.name)
-        #         else:
-        #             pool.submit(self.handle_chapter_detail_data, v.chapter_id, new_index, name, course_name, v.name)
+        max_workers = 10
+        with ThreadPoolExecutor(max_workers=max_workers) as pool:
+            for index, v in enumerate(self.chapter_info):
+                children = v.children
+                new_index = index+1
+                if children and len(children) > 0:
+                    for child in children:
+                        pool.submit(self.handle_chapter_detail_data, child.chapter_id, new_index, name, course_name, v.name, child_chapter_name=child.name)
+                else:
+                    pool.submit(self.handle_chapter_detail_data, v.chapter_id, new_index, name, course_name, v.name)
 
         """
         for testing & debug
         """
-        for index, v in enumerate(self.chapter_info):
-            children = v.children
-            if children and len(children) > 0:
-                for child in children:
-                    self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name, child_chapter_name=child.name)
-            else:
-                self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name)
+        # for index, v in enumerate(self.chapter_info):
+        #     children = v.children
+        #     if children and len(children) > 0:
+        #         for child in children:
+        #             self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name, child_chapter_name=child.name)
+        #     else:
+        #         self.handle_chapter_detail_data(v.chapter_id, index+1, name, course_name, v.name)
 
-    def handle_chapter_detail_data(self, chapter_id, index, name, course_name, parent_chapter_name, child_chapter_name=None):
+    def handle_chapter_detail_data(self, chapter_id, index, name, course_name, parent_chapter_name: str, child_chapter_name=None):
         api_status, chapter_detail = self._get_chapter_detail(chapter_id)
         if api_status is False:
             print(f"failed info is {chapter_id}, {name}, {course_name}")
@@ -84,9 +86,11 @@ class QianYuJie:
         course_id, chapter_id, chapter_name, video = self._to_analyze_chapter_detail(chapter_detail)
 
         if child_chapter_name is None:
+            chapter_name = chapter_name.replace(" ", "-")
             chapter_name = f"{index}.{chapter_name}" if not chapter_name.startswith(str(index)) else chapter_name
             chapter_detail_txt = ",".join(list((name, course_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
         else:
+            parent_chapter_name = parent_chapter_name.replace(" ", "-")
             parent_chapter_name = f"{index}.{parent_chapter_name}" if not parent_chapter_name.startswith(str(index)) else parent_chapter_name
             chapter_detail_txt = ",".join(list((name, course_name, parent_chapter_name, f"{chapter_name}-{course_id}-{chapter_id}", video)))
 
@@ -102,7 +106,7 @@ class QianYuJie:
     # download part
     def _get_language_list(self) -> tuple:
         file_name = "mocks/qianyujie/all_languages.json"
-        response_json = self.downloader._get_json("https://82497838.clarc.cn/index", file_name=file_name)
+        response_json = self.downloader._get_json("https://82497838.clarc.cn/index", file_name=file_name, service_data_path=service_data_path)
         return response_json
 
     def _get_course_list(self, assortment_id: str) -> tuple:
@@ -112,7 +116,7 @@ class QianYuJie:
             "page_size": 20
         }
         file_name = "mocks/qianyujie/cantonese_course_list.json"
-        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/list", params, file_name=file_name)
+        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/list", params, file_name=file_name, service_data_path=service_data_path)
         return response_json
 
     def _get_chapter_list(self, course_id: str) -> tuple:
@@ -121,7 +125,7 @@ class QianYuJie:
             "course_id": course_id
         }
         file_name = "mocks/qianyujie/pinyin_chapters_with_children.json"
-        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/chapter", params, file_name=file_name)
+        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/chapter", params, file_name=file_name, service_data_path=service_data_path)
         return response_json
 
     def _get_chapter_detail(self, chapter_id: str) -> tuple:
@@ -130,7 +134,7 @@ class QianYuJie:
             "chapter_id": chapter_id
         }
         file_name = "mocks/qianyujie/chapter_detail.json"
-        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/chapter_detail", params, file_name=file_name)
+        response_json = self.downloader._get_json("https://82497838.clarc.cn/course/chapter_detail", params, file_name=file_name, service_data_path=service_data_path)
         return response_json
 
     # data analysis part

@@ -1,6 +1,7 @@
 from urllib.parse import urlparse
 from util.json import JSONLoader
-import requests
+from util.file import File
+import requests, time
 
 class Downloader(object):
     header: dict
@@ -22,11 +23,14 @@ class Downloader(object):
         # response = requests.get(url, verify=False)
         return (response.ok, response.content)
 
-    def _get_json(self, url, params=None, file_name: str = ""):
+    def _get_json(self, url, params=None, file_name: str = "", service_data_path=None):
         is_mock, object = self.enable_mock_data(file_name)
         if is_mock:
             return (is_mock, object)
         response = requests.get(url, params=params, **self.header, verify=False)
+        if service_data_path is not None:
+            file_name = str(time.time()) + "_" + "_".join(url.split("/")[-2:])
+            File.write_file(response.content.decode(), f"mocks/qianyujie/services/{file_name}.json")
         return (response.ok, JSONLoader.load_decodable_with_bytes(response.content))
 
     def _post_json(self, url, data=None, json=None, file_name: str = ""):

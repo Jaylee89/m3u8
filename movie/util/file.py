@@ -23,7 +23,7 @@ class File:
 
     def check_directory(func):
         def result(stream, path):
-            _path = os.path.dirname(path)
+            _path = os.path.dirname(os.path.join(ROOT_PATH, path))
             if not os.path.exists(_path):
                 os.makedirs(_path)
             func(stream, path)

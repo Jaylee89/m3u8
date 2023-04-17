@@ -12,10 +12,18 @@ class Flow:
         for k, v in enumerate(self.data):
             print(f"{k}. {v.name}")
 
-        if "unittest" in sys.modules.keys():
-            manual_input = 0
-        else:
-            manual_input = input("\nYour input is [index]: ")
+        """
+        enable it if run in prod env
+        """
+        # if "unittest" in sys.modules.keys():
+        #     manual_input = 0
+        # else:
+        #     manual_input = input("\nYour input is [index]: ")
+
+        """
+        usage in manual testing
+        """
+        manual_input = input("\nYour input is [index]: ")
 
         try:
             option = self.data[int(manual_input)]

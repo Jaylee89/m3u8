@@ -135,3 +135,5 @@ tmp
 *.zip
 
 test-reports
+
+movie/mocks/qianyujie/services/**.json
