@@ -17,6 +17,8 @@ You need to execute two commands after a new deployment
 
 ## Docs reference
 - [Python Download M3U8 Encrypted Video Example](https://www.fatalerrors.org/a/python-download-m3u8-encrypted-video-example.html)
+- [video dowload](https://www.fodownloader.com/)
+- [bilibili video analysis](https://blog.csdn.net/lovelovelovelovelo/article/details/102831707)
 
 ## module vs package
 [Analysis](https://baijiahao.baidu.com/s?id=1719012170117330312&wfr=spider&for=pc)
